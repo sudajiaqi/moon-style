@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.godmoonlight.moonstyle.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.godmoonlight.moonstyle.MyBundle
 
 class MyApplicationService {
 
