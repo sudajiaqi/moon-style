@@ -3,5 +3,11 @@
 # moon-style Changelog
 
 ## [Unreleased]
+## [0.0.2] - 2020-11-20
+### Changed
+- add new plugin icon
+## [0.0.1] - 2020-11-29
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- beanConverter: convert a bean to another
+- toJson: convert bean to json
+- toYaml: convert bean to yaml

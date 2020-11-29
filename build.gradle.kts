@@ -40,6 +40,15 @@ version = pluginVersion
 
 // Configure project's dependencies
 repositories {
+//    maven {
+//        url = uri("https://maven.aliyun.com/repository/jcenter/")
+//    }
+//    maven {
+//        url = uri("https://maven.aliyun.com/repository/gradle-plugin/")
+//    }
+//    maven {
+//        url = uri("https://maven.aliyun.com/nexus/content/groups/public/")
+//    }
     mavenCentral()
     jcenter()
 }
@@ -57,7 +66,9 @@ intellij {
     updateSinceUntilBuild = true
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-    setPlugins(*platformPlugins.split(',').map(String::trim).filter(String::isNotEmpty).toTypedArray())
+    setPlugins(
+        *platformPlugins.split(',').map(String::trim).filter(String::isNotEmpty).toTypedArray()
+    )
 }
 
 // Configure detekt plugin.

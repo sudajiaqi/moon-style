@@ -1,7 +1,7 @@
 package com.github.godmoonlight.moonstyle.services
 
-import com.intellij.openapi.project.Project
 import com.github.godmoonlight.moonstyle.MyBundle
+import com.intellij.openapi.project.Project
 
 class MyProjectService(project: Project) {
 
