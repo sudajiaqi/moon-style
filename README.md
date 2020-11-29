@@ -14,11 +14,25 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+This is a tool set for editor
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+### Usage:
+#### Converter method
+- Put the caret in any place within the class, press `Alt+Ins` or `Command + n`.
+- select Converter method in menu. 
+- In the dialog select the Class you want to convert To and select the class you want to convert From.
+- Press Ok and converter method will be added to your current class.
+- Plugin also writes in comments list of fields, that were not mapped (appropriate setter or getter is missing or different types).
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+#### To Json
+- Open the java class which you want to generate a json object for
+- Click or Right Click the class ,and select `To Json`
+- Finally, you can paste the json to anywhere
+
+#### To Yaml
+- Open the java class which you want to generate a yaml object for
+- Click or Right Click the class ,and select `To Yaml`
+- Finally, you can paste the json to anywhere
 <!-- Plugin description end -->
 
 ## Installation
