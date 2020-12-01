@@ -3,6 +3,9 @@
 # moon-style Changelog
 
 ## [Unreleased]
+## [0.0.3] - 2020-12-01
+### Added
+- add license
 ## [0.0.2] - 2020-11-20
 ### Changed
 - add new plugin icon
