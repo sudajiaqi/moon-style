@@ -3,6 +3,18 @@
 # moon-style Changelog
 
 ## [Unreleased]
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.0.4]
 
 ## [0.0.4] - 2020-12-01
 - add java plugin
