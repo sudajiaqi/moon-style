@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 
-## [0.0.4] - 2020-12-04
+## [0.0.5] - 2020-12-04
 ### Added
 - support idea version 2020.3
 
