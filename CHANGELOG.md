@@ -16,7 +16,12 @@
 ### Security
 ## [0.0.4]
 
+## [0.0.5] - 2020-12-04
+### Added
+- support idea version 2020.3
+
 ## [0.0.4] - 2020-12-01
+### Added
 - add java plugin
 
 ## [0.0.3] - 2020-12-01
