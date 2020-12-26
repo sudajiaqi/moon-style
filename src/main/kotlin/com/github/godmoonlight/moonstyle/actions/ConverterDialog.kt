@@ -1,6 +1,9 @@
 package com.github.godmoonlight.moonstyle.actions
 
 import com.intellij.ide.highlighter.JavaFileType
+import com.intellij.ide.util.ClassFilter
+import com.intellij.ide.util.TreeClassChooser
+import com.intellij.ide.util.TreeClassChooserFactory
 import com.intellij.openapi.fileEditor.impl.EditorHistoryManager
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.LabeledComponent
@@ -24,6 +27,14 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
     private var toField: TextFieldWithAutoCompletion<String>? = null
     private var fromField: TextFieldWithAutoCompletion<String>? = null
     private val inheritFields: JCheckBox
+    val convertToClass: PsiClass
+        get() = extractPsiClass(toField)
+    val convertFromClass: PsiClass
+        get() = extractPsiClass(fromField)
+    fun isInheritFields(): Boolean {
+        return inheritFields.isSelected
+    }
+
 
     override fun doValidate(): ValidationInfo? {
         return toField?.let { validateField(it, "Target") }
@@ -61,14 +72,7 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
         return textField
     }
 
-    val convertToClass: PsiClass
-        get() = extractPsiClass(toField)
-    val convertFromClass: PsiClass
-        get() = extractPsiClass(fromField)
 
-    fun isInheritFields(): Boolean {
-        return inheritFields.isSelected
-    }
 
     private fun extractPsiClass(textField: TextFieldWithAutoCompletion<String>?): PsiClass {
         val className = textField!!.text

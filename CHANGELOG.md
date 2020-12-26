@@ -14,18 +14,9 @@
 ### Fixed
 
 ### Security
-## [0.0.5]
-### Added
-
-### Changed
-
-### Deprecated
-
-### Removed
-
+## [0.0.6] - 2020-12-10
 ### Fixed
-
-### Security
+- Not working in 193
 
 ## [0.0.5] - 2020-12-04
 ### Changed
