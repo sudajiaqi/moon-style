@@ -32,7 +32,6 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
         return inheritFields.isSelected
     }
 
-
     override fun doValidate(): ValidationInfo? {
         return toField?.let { validateField(it, "Target") }
             ?: return fromField?.let { validateField(it, "From") }
