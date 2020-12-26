@@ -1,9 +1,6 @@
 package com.github.godmoonlight.moonstyle.actions
 
 import com.intellij.ide.highlighter.JavaFileType
-import com.intellij.ide.util.ClassFilter
-import com.intellij.ide.util.TreeClassChooser
-import com.intellij.ide.util.TreeClassChooserFactory
 import com.intellij.openapi.fileEditor.impl.EditorHistoryManager
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.LabeledComponent
