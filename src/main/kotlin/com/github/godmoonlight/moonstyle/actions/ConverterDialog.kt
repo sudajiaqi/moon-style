@@ -68,8 +68,6 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
         return textField
     }
 
-
-
     private fun extractPsiClass(textField: TextFieldWithAutoCompletion<String>?): PsiClass {
         val className = textField!!.text
         require(className.isNotBlank()) { "Should select class" }
