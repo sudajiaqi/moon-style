@@ -1,5 +1,6 @@
 package com.github.godmoonlight.moonstyle.actions
 
+import com.intellij.lang.jvm.JvmModifier
 import com.intellij.psi.PsiArrayType
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiEnumConstant
@@ -10,9 +11,11 @@ import com.intellij.psi.util.PsiUtil
 import org.jetbrains.annotations.NotNull
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.Period
 import java.util.Date
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -33,13 +36,14 @@ class FieldResolver(private var comment: Boolean, private var random: Boolean, p
         if (psiClass == null) {
             return kv
         }
-        for (field in psiClass.allFields) {
-            val type = field.type
-            val name = field.name
+        psiClass.allFields.filter { !it.hasModifier(JvmModifier.STATIC) }.forEach {
+
+            val type = it.type
+            val name = it.name
 
             // doc comment
-            if (field.docComment != null && field.docComment!!.text != null) {
-                commentKV[name] = field.docComment!!.text
+            if (it.docComment != null && it.docComment!!.text != null) {
+                commentKV[name] = it.docComment!!.text
             }
             // primitive Type
             if (type is PsiPrimitiveType) {
@@ -80,9 +84,8 @@ class FieldResolver(private var comment: Boolean, private var random: Boolean, p
     private fun processEnum(type: @NotNull PsiType): Any {
         return when {
             random -> {
-                PsiUtil.resolveClassInClassTypeOnly(type)!!
-                    .fields.filterIsInstance<PsiEnumConstant>().parallelStream()
-                    .findAny().get().name
+                PsiUtil.resolveClassInClassTypeOnly(type)!!.fields
+                    .filterIsInstance<PsiEnumConstant>().parallelStream().findAny().get().name
             }
             enumvalues -> {
                 PsiUtil.resolveClassInClassTypeOnly(type)!!
@@ -137,6 +140,8 @@ class FieldResolver(private var comment: Boolean, private var random: Boolean, p
         normalTypes["Timestamp"] = System.currentTimeMillis()
         normalTypes["LocalDate"] = LocalDate.now().toString()
         normalTypes["LocalTime"] = LocalTime.now().toString()
+        normalTypes["Period"] = Period.ZERO.toString()
+        normalTypes["Duration"] = Duration.ZERO.toString()
         normalTypes["LocalDateTime"] = LocalDateTime.now().toString()
     }
 }
