@@ -84,13 +84,12 @@ class FieldResolver(private var comment: Boolean, private var random: Boolean, p
     private fun processEnum(type: @NotNull PsiType): Any {
         return when {
             random -> {
-                PsiUtil.resolveClassInClassTypeOnly(type)!!
-                        .fields.filterIsInstance<PsiEnumConstant>().parallelStream()
-                        .findAny().get().name
+                PsiUtil.resolveClassInClassTypeOnly(type)!!.fields
+                    .filterIsInstance<PsiEnumConstant>().parallelStream().findAny().get().name
             }
             enumvalues -> {
                 PsiUtil.resolveClassInClassTypeOnly(type)!!
-                        .fields.filterIsInstance<PsiEnumConstant>().map { it.name }
+                    .fields.filterIsInstance<PsiEnumConstant>().map { it.name }
             }
             else -> ""
         }
