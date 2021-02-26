@@ -11,7 +11,11 @@ import com.intellij.psi.util.PsiUtil
 import org.jetbrains.annotations.NotNull
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.*
+import java.time.Duration
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.Period
 import java.util.Date
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -81,12 +85,12 @@ class FieldResolver(private var comment: Boolean, private var random: Boolean, p
         return when {
             random -> {
                 PsiUtil.resolveClassInClassTypeOnly(type)!!
-                    .fields.filterIsInstance<PsiEnumConstant>().parallelStream()
-                    .findAny().get().name
+                        .fields.filterIsInstance<PsiEnumConstant>().parallelStream()
+                        .findAny().get().name
             }
             enumvalues -> {
                 PsiUtil.resolveClassInClassTypeOnly(type)!!
-                    .fields.filterIsInstance<PsiEnumConstant>().map { it.name }
+                        .fields.filterIsInstance<PsiEnumConstant>().map { it.name }
             }
             else -> ""
         }
