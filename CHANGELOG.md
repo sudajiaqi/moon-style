@@ -14,18 +14,12 @@
 ### Fixed
 
 ### Security
-## [0.0.6]
-### Added
-
-### Changed
-
-### Deprecated
-
-### Removed
+## [0.0.7]
 
 ### Fixed
+- fix static field
 
-### Security
+
 ## [0.0.6] - 2020-12-10
 ### Fixed
 - Not working in 193
