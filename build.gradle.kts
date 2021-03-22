@@ -9,15 +9,16 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
-    id("org.jetbrains.kotlin.jvm") version "1.4.31"
+    id("org.jetbrains.kotlin.jvm").version("1.4.31")
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "0.7.2"
+    id("org.jetbrains.intellij").version("0.7.2")
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
-    id("org.jetbrains.changelog") version "1.1.2"
+    id("org.jetbrains.changelog").version("1.1.2")
     // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
-    id("io.gitlab.arturbosch.detekt") version "1.16.0"
+//    id("io.gitlab.arturbosch.detekt") version "1.16.0"
+    id("io.gitlab.arturbosch.detekt").version("1.16.0")
     // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
-    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
+    id("org.jlleitschuh.gradle.ktlint").version("10.0.0")
 }
 
 group = properties("pluginGroup")
@@ -25,6 +26,7 @@ version = properties("pluginVersion")
 
 // Configure project's dependencies
 repositories {
+    jcenter()
     maven {
         url = uri("https://maven.aliyun.com/repository/jcenter/")
     }

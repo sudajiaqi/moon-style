@@ -18,8 +18,7 @@ import javax.swing.JCheckBox
 import javax.swing.JComponent
 import javax.swing.JPanel
 
-class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean) :
-    DialogWrapper(psiClass.project) {
+class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean) : DialogWrapper(psiClass.project) {
     private val dialog: JPanel
     private var toField: TextFieldWithAutoCompletion<String>? = null
     private var fromField: TextFieldWithAutoCompletion<String>? = null
@@ -28,16 +27,23 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
         get() = extractPsiClass(toField)
     val convertFromClass: PsiClass
         get() = extractPsiClass(fromField)
+
     fun isInheritFields(): Boolean {
         return inheritFields.isSelected
     }
 
     override fun doValidate(): ValidationInfo? {
-        return toField?.let { validateField(it, "Target") }
-            ?: return fromField?.let { validateField(it, "From") }
+        var result: ValidationInfo? = null
+        if (toField != null) {
+            result = validateField(toField!!, "Target")
+        }
+        if (fromField != null) {
+            result = validateField(fromField!!, "From")
+        }
+        return result
     }
 
-    override fun createCenterPanel(): JComponent? {
+    override fun createCenterPanel(): JComponent {
         return dialog
     }
 
@@ -80,10 +86,7 @@ class ConverterDialog(private val psiClass: PsiClass, from: Boolean, to: Boolean
     private fun validateField(field: TextFieldWithCompletion, name: String): ValidationInfo? {
         val className = field.text
         if (className.isEmpty()) {
-            return ValidationInfo(
-                String.format("%s class should be selected", name),
-                field
-            )
+            return ValidationInfo("$name class should be selected", field)
         }
         val resolvedClasses = PsiShortNamesCache.getInstance(psiClass.project)
             .getClassesByName(className, GlobalSearchScope.projectScope(psiClass.project))
