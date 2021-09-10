@@ -2,18 +2,10 @@
 
 # moon-style Changelog
 
-## [Unreleased]
-### Added
-
+## [0.0.8]
 ### Changed
+ - update template and support new version for idea
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 ## [0.0.7]
 
 ### Fixed

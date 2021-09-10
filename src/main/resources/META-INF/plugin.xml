@@ -43,5 +43,9 @@
       description="Generate Yaml for a POJO">
       <add-to-group group-id="EditorPopupMenu" anchor="first"/>
     </action>
+    <action id="getDate" class="com.github.godmoonlight.moonstyle.actions.GetDate" text="Get Data"
+      description="gate data from database">
+      <add-to-group group-id="EditorPopupMenu" anchor="before"/>
+    </action>
   </actions>
 </idea-plugin>

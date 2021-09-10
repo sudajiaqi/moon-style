@@ -5,6 +5,4 @@ formatting:
   Indentation:
     continuationIndentSize: 8
   ParameterListWrapping:
-    active: true
-    autoCorrect: true
-    indentSize: 4
+    indentSize: 8
