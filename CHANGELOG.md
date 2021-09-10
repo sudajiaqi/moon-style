@@ -2,7 +2,7 @@
 
 # moon-style Changelog
 
-## [0.0.8]
+## [Unreleased]
 ### Changed
  - update template and support new version for idea
 
