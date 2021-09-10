@@ -24,15 +24,15 @@ version = properties("pluginVersion")
 
 // Configure project's dependencies
 repositories {
-    maven {
-        url = uri("https://maven.aliyun.com/repository/jcenter/")
-    }
-    maven {
-        url = uri("https://maven.aliyun.com/repository/gradle-plugin/")
-    }
-    maven {
-        url = uri("https://maven.aliyun.com/nexus/content/groups/public/")
-    }
+//    maven {
+//        url = uri("https://maven.aliyun.com/repository/jcenter/")
+//    }
+//    maven {
+//        url = uri("https://maven.aliyun.com/repository/gradle-plugin/")
+//    }
+//    maven {
+//        url = uri("https://maven.aliyun.com/nexus/content/groups/public/")
+//    }
     mavenCentral()
 }
 dependencies {

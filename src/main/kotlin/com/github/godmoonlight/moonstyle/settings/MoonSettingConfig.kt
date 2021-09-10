@@ -18,7 +18,6 @@ data class TestData(
     var camelCase: Boolean = true
 )
 
-
 data class MoonSettingConfig(
     var toJsonConfig: ToJsonConfig = ToJsonConfig(),
     var toYamlConfig: ToYamlConfig = ToYamlConfig()
