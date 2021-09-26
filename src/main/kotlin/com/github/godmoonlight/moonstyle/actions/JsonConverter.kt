@@ -2,10 +2,8 @@ package com.github.godmoonlight.moonstyle.actions
 
 import com.github.godmoonlight.moonstyle.settings.ConfigUtil
 import com.github.godmoonlight.moonstyle.settings.ToJsonConfig
-import com.intellij.notification.NotificationDisplayType
-import com.intellij.notification.NotificationGroup
+import com.github.godmoonlight.moonstyle.utils.Notifier
 import com.intellij.notification.NotificationType
-import com.intellij.notification.Notifications
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
@@ -16,13 +14,6 @@ import java.awt.Toolkit
 import java.awt.datatransfer.StringSelection
 
 class JsonConverter : AnAction() {
-    companion object {
-        private var notificationGroup: NotificationGroup = NotificationGroup(
-            "Java2Json.NotificationGroup",
-            NotificationDisplayType.BALLOON,
-            true
-        )
-    }
 
     override fun actionPerformed(e: AnActionEvent) {
         val editor = e.dataContext.getData(CommonDataKeys.EDITOR)
@@ -42,7 +33,6 @@ class JsonConverter : AnAction() {
         val clipboard = Toolkit.getDefaultToolkit().systemClipboard
         clipboard.setContents(selection, selection)
         val message = "Convert " + selectedClass.name + " to JSON success, copied to clipboard."
-        val success = notificationGroup.createNotification(message, NotificationType.INFORMATION)
-        Notifications.Bus.notify(success, project)
+        Notifier.notify(project, message, NotificationType.INFORMATION)
     }
 }
