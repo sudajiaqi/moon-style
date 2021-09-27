@@ -3,16 +3,17 @@
 # moon-style Changelog
 
 ## [Unreleased]
+
+### Changed
 - fix deprecated api
 
-## [0.0.9]
+## [0.0.9] - 2021-9-26
 ### Changed
- - update template and support new version for idea
+- change to new template
 
 ## [0.0.7]
 ### Fixed
 - fix static field
-
 
 ## [0.0.6] - 2020-12-10
 ### Fixed
