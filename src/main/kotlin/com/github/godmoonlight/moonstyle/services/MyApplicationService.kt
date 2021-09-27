@@ -3,8 +3,8 @@ package com.github.godmoonlight.moonstyle.services
 import com.github.godmoonlight.moonstyle.MyBundle
 import com.github.godmoonlight.moonstyle.settings.MoonSettingConfig
 import com.github.godmoonlight.moonstyle.settings.ToJsonConfig
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
-import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.intellij.util.xmlb.XmlSerializerUtil
@@ -22,7 +22,7 @@ class MyApplicationService : PersistentStateComponent<MyApplicationService> {
 
     companion object {
         fun getInstance(): MyApplicationService {
-            return ServiceManager.getService(MyApplicationService::class.java)
+            return ApplicationManager.getApplication().getService(MyApplicationService::class.java)
         }
     }
 

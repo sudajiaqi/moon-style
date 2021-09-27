@@ -16,10 +16,11 @@
       serviceImplementation="com.github.godmoonlight.moonstyle.services.MyProjectService"/>
     <applicationConfigurable
       id="moonStyleSetting"
-      bundle="messages.MyBundle"
+      bundle="messages.MoonStyle"
       parentId="tools"
       instance="com.github.godmoonlight.moonstyle.settings.AppSettingsConfigurable"
       displayName="Moon Style"/>
+    <notificationGroup id="Moon-style-Notification-Group" displayType="BALLOON" key="moon.style.notification"/>
   </extensions>
 
   <applicationListeners>

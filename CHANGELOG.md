@@ -4,7 +4,10 @@
 
 ## [Unreleased]
 
-## [0.0.9]
+### Changed
+- fix deprecated api
+
+## [0.0.9] - 2021-9-26
 ### Changed
 - change to new template
 
