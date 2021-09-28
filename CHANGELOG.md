@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+## [0.1.0]
 ### Changed
 - fix deprecated api
 
