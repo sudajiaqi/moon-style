@@ -3,6 +3,12 @@
 # moon-style Changelog
 
 ## [Unreleased]
+### Add
+- add new action for bean converter
+### ### Fixed
+- fix bean converter code
+- fix bean convert message
+- fix notification
 
 ## [0.1.0]
 ### Changed

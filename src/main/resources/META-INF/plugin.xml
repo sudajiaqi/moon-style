@@ -20,7 +20,7 @@
       parentId="tools"
       instance="com.github.godmoonlight.moonstyle.settings.AppSettingsConfigurable"
       displayName="Moon Style"/>
-    <notificationGroup id="Moon-style-Notification-Group" displayType="BALLOON" key="moon.style.notification"/>
+    <notificationGroup id="Moon-style-Notification-Group" displayType="BALLOON" bundle="messages.MoonStyle" key="moon.style.notification"/>
   </extensions>
 
   <applicationListeners>
@@ -28,6 +28,20 @@
       topic="com.intellij.openapi.project.ProjectManagerListener"/>
   </applicationListeners>
   <actions>
+    <action id="com.github.godmoonlight.moonstyle.actions.ConverterToAction"
+            class="com.github.godmoonlight.moonstyle.actions.ConverterToAction"
+            text="Converter to Method"
+            description="Generates method for converting the instance of one class">
+      <add-to-group group-id="JavaGenerateGroup1" anchor="after"
+                    relative-to-action="Actions.ActionsPlugin.GenerateToString" />
+    </action>
+
+    <action id="com.github.godmoonlight.moonstyle.actions.ConverterFromAction" class="com.github.godmoonlight.moonstyle.actions.ConverterFromAction"
+            text="Converter from Method"
+            description="Generates method for converting the instance of one class to another">
+      <add-to-group group-id="JavaGenerateGroup1" anchor="after"
+                    relative-to-action="Actions.ActionsPlugin.GenerateToString" />
+    </action>
     <action id="com.github.godmoonlight.moonstyle.actions.BeanConverter"
       class="com.github.godmoonlight.moonstyle.actions.BeanConverter"
       text="Bean-Converter"

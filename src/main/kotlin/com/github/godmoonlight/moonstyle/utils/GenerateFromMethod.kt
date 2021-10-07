@@ -2,34 +2,35 @@ package com.github.godmoonlight.moonstyle.utils
 
 import com.intellij.psi.PsiPrimitiveType
 import com.intellij.psi.util.PsiUtil
-import org.jetbrains.annotations.NotNull
 
-class GenerateConverterMethod(private val mapResult: ClassMapResult) : GenerateMethod(mapResult) {
-    private val toClassName: String? = mapResult.to.qualifiedName
-    private val fromName: String = SuggestionName[mapResult.from]
-    private val fromClassName: String? = mapResult.from.qualifiedName
+
+/**
+ * @author jiaqi
+ */
+class GenerateFromMethod(private val mapResult: ClassMapResult) : GenerateMethod(mapResult) {
+    private var fromName: String = SuggestionName[mapResult.from]
 
     override fun generate(): String {
+        val toClassName = mapResult.to.qualifiedName
+        val fromClassName = mapResult.from.qualifiedName
         val content = writeMappedFields() + mapResult.writeNotMappedFields()
 
-        return """public static $toClassName to${mapResult.to.name}($fromClassName $fromName) {
-                if ($fromName ==null) {
-                    return null;
-                }
-                $toClassName $toName = new $toClassName();
-                $content
-                return $toName;
-            }
-        """.trimIndent()
+        return """public static $toClassName from($fromClassName $fromName) { 
+        >   if ($fromName == null) {
+        >       return null;
+        >   }
+        >   $toClassName $toName = new $toClassName();
+        >   $content
+        >   return $toName;
+        >}
+        >""".trimMargin(">")
 
     }
 
-    @NotNull
     private fun writeMappedFields(): String {
         val builder = StringBuilder()
-
-        for (field in mapResult.mappedFields) {
-            builder.append("$toName.${field.value.second.name}($fromName.${field.value.first.name}());\n")
+        for (fieldName in mapResult.mappedFields) {
+            builder.append("$toName.${fieldName.value.second.name}($fromName.${fieldName.value.first.name}());\n")
         }
         for (field in mapResult.mappedConvertibleFields) {
             if (field.value.first.returnType is PsiPrimitiveType) {
