@@ -1,14 +1,13 @@
 package com.github.godmoonlight.moonstyle.utils
 
 import com.github.godmoonlight.moonstyle.utils.ProjectUtil.getProjectIndentation
-import com.intellij.lang.jvm.JvmModifier
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiMethod
+import com.intellij.psi.PsiModifier
+import com.intellij.psi.util.PropertyUtil
 import com.intellij.psi.util.PsiUtil
-import org.jetbrains.annotations.NotNull
-import java.util.LinkedList
-import kotlin.collections.LinkedHashMap
+import java.util.*
 
 class ClassMapResult(var from: PsiClass, var to: PsiClass) {
 
@@ -32,7 +31,7 @@ class ClassMapResult(var from: PsiClass, var to: PsiClass) {
     private fun processToFields() {
         for (toField in getFields(this.to, useInherited)) {
             val fieldName = toField.name
-            val toSetter = findSetter(this.to, fieldName, useInherited)
+            val toSetter = findSetter(toField)
             val fromGetter = findGetter(this.from, fieldName, useInherited)
             when {
                 toSetter == null || fromGetter == null -> {
@@ -52,10 +51,12 @@ class ClassMapResult(var from: PsiClass, var to: PsiClass) {
     }
 
     private fun processFromFields() {
+        val names1 = this.mappedFields.keys.map { it.name }
+        val names2 = this.mappedConvertibleFields.keys.map { it.name }
         for (fromField in getFields(from, useInherited)) {
             val fromFieldName = fromField.name
-            if (!this.mappedFields.contains(fromField) &&
-                !this.mappedConvertibleFields.containsKey(fromField)
+            if (!names1.contains(fromFieldName) &&
+                !names2.contains(fromFieldName)
             ) {
                 this.notMappedFromFields.add(fromFieldName)
             }
@@ -77,7 +78,7 @@ class ClassMapResult(var from: PsiClass, var to: PsiClass) {
                 clazz.allFields
             } else {
                 clazz.fields
-            }.filter { !it.hasModifier(JvmModifier.STATIC) }
+            }.filter { !it.hasModifierProperty(PsiModifier.STATIC) }
         }
 
         private fun findSetter(psiClass: PsiClass, field: String, inherited: Boolean): PsiMethod? {
@@ -88,17 +89,16 @@ class ClassMapResult(var from: PsiClass, var to: PsiClass) {
             } else null
         }
 
+        private fun findGetter(psiField: PsiField): PsiMethod? {
+            return PropertyUtil.findGetterForField(psiField)
+        }
+
+        private fun findSetter(psiField: PsiField): PsiMethod? {
+            return PropertyUtil.findSetterForField(psiField)
+        }
+
         private fun findGetter(psiClass: PsiClass, field: String, inherited: Boolean): PsiMethod? {
-            val methodSuffix = field.substring(0, 1).toUpperCase() + field.substring(1)
-            var getters: Array<out @NotNull PsiMethod> =
-                psiClass.findMethodsByName("get$methodSuffix", inherited)
-            if (getters.isNotEmpty()) {
-                return getters[0]
-            }
-            getters = psiClass.findMethodsByName("is$methodSuffix", false)
-            return if (getters.isNotEmpty()) {
-                getters[0]
-            } else null
+            return PropertyUtil.findPropertyGetter(psiClass, field, false, inherited)
         }
     }
 
@@ -130,25 +130,21 @@ class ClassMapResult(var from: PsiClass, var to: PsiClass) {
     }
 
     private fun writeNotMappedFields(notMappedFields: List<String>, psiClass: PsiClass?): String {
+        if (notMappedFields.isEmpty()) {
+            return ""
+        }
         val indentation = getProjectIndentation(psiClass!!)
         val builder = StringBuilder()
-        if (notMappedFields.isNotEmpty()) {
-            builder.append("\n")
-                .append(indentation)
-                .append("// Not mapped ")
-                .append(psiClass.name)
-                .append(" fields: \n")
-        }
+
+        builder.append("\n $indentation// Not mapped ${psiClass.name} fields: \n ")
         for (notMappedField in notMappedFields) {
-            builder.append(indentation)
-                .append("// ")
-                .append(notMappedField)
-                .append("\n")
+            builder.append("$indentation// $notMappedField\n")
         }
+
         return builder.toString()
     }
 
-    fun writeNotMappedFields(): String? {
+    fun writeNotMappedFields(): String {
         val a = writeNotMappedFields(notMappedFromFields, from)
         val b = writeNotMappedFields(notMappedToFields, to)
         return "$a$b"
