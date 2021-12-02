@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [0.1.2]
+### Add
+- change idea support version
+
 ## [0.1.1]
 ### Add
 - add new action for bean converter
