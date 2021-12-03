@@ -5,6 +5,11 @@
 ## [Unreleased]
 
 ## [0.1.2]
+## [0.1.2]
+### Add
+- change idea support version
+
+## [0.1.2]
 ### Add
 - change idea support version
 
