@@ -3,6 +3,8 @@
 # moon-style Changelog
 
 ## [Unreleased]
+### Add
+- change idea support version
 
 ## [0.1.2]
 ### Add
