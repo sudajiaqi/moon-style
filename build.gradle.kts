@@ -6,12 +6,12 @@ fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
     id("java") // Java support
+    id("org.gradle.toolchains.foojay-resolver-convention") version("0.4.0")
     alias(libs.plugins.kotlin) // Kotlin support
     alias(libs.plugins.gradleIntelliJPlugin) // Gradle IntelliJ Plugin
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
-    id("org.gradle.toolchains.foojay-resolver-convention") version("0.4.0")
 }
 
 group = properties("pluginGroup").get()
