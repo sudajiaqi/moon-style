@@ -10,7 +10,6 @@
 
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="Moon-style" factoryClass="com.github.sudajiaqi.moonstyle.toolWindow.MyToolWindowFactory"/>
         <applicationService
                 serviceImplementation="com.github.sudajiaqi.moonstyle.services.MyApplicationService"/>
         <projectService
@@ -25,10 +24,9 @@
                            key="moon.style.notification"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.sudajiaqi.moonstyle.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+<!--    <applicationListeners>-->
+<!--        <listener class="com.github.sudajiaqi.moonstyle.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>-->
+<!--    </applicationListeners>-->
     <actions>
         <action id="com.github.sudajiaqi.moonstyle.actions.ConverterToAction"
                 class="com.github.sudajiaqi.moonstyle.actions.ConverterToAction"

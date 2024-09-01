@@ -1,9 +1,8 @@
 package com.github.sudajiaqi.moonstyle.actions
 
-import com.github.sudajiaqi.moonstyle.utils.ClassMapResult
-import com.github.sudajiaqi.moonstyle.utils.GenerateFromMethod
-import com.github.sudajiaqi.moonstyle.utils.GenerateMethod
-import com.github.sudajiaqi.moonstyle.utils.ProjectUtil
+import com.github.sudajiaqi.moonstyle.utils.*
+import com.intellij.notification.NotificationType
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
@@ -16,6 +15,8 @@ import com.intellij.psi.codeStyle.JavaCodeStyleManager
  * @author jiaqi
  */
 class ConverterFromAction : AnAction() {
+    override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
+
     override fun actionPerformed(e: AnActionEvent) {
         val psiClass: PsiClass = ProjectUtil.getPsiClassFromContext(e) ?: return
         val generateConverterDialog = ConverterDialog(psiClass, from = true, to = false)
@@ -23,6 +24,7 @@ class ConverterFromAction : AnAction() {
         if (generateConverterDialog.isOK) {
             val classFrom = generateConverterDialog.convertFromClass
             generateConvertAs(psiClass, classFrom, generateConverterDialog.isInheritFields())
+            Notifier.notify(psiClass.project, "Method generate successfully! ", NotificationType.INFORMATION)
         }
     }
 

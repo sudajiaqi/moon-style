@@ -20,6 +20,7 @@ class ClassMapResult(var from: PsiClass, var to: PsiClass) {
     val mappedConvertibleFields: LinkedHashMap<PsiField, Pair<PsiMethod, PsiMethod>> =
         LinkedHashMap()
 
+
     private val notMappedToFields: MutableList<String> = LinkedList()
 
     private val notMappedFromFields: MutableList<String> = LinkedList()
@@ -81,34 +82,30 @@ class ClassMapResult(var from: PsiClass, var to: PsiClass) {
             }.filter { !it.hasModifierProperty(PsiModifier.STATIC) }
         }
 
-        private fun findSetter(psiClass: PsiClass, field: String, inherited: Boolean): PsiMethod? {
-            val name = "set" + field.substring(0, 1).toUpperCase() + field.substring(1)
-            val setters = psiClass.findMethodsByName(name, inherited)
-            return if (setters.size == 1) {
-                setters[0]
-            } else null
-        }
+//        private fun findSetter(psiClass: PsiClass, field: String, inherited: Boolean): PsiMethod? {
+//            val name = "set" + field.substring(0, 1).uppercase(Locale.getDefault()) + field.substring(1)
+//            val setters = psiClass.findMethodsByName(name, inherited)
+//            return if (setters.size == 1) {
+//                setters[0]
+//            } else null
+//        }
 
-        private fun findGetter(psiField: PsiField): PsiMethod? {
-            return PropertyUtil.findGetterForField(psiField)
-        }
+//        private fun findGetter(psiField: PsiField): PsiMethod? {
+//            return PropertyUtil.findGetterForField(psiField)
+//        }
 
         private fun findSetter(psiField: PsiField): PsiMethod? {
             return PropertyUtil.findSetterForField(psiField)
         }
 
-        private fun findGetter(psiClass: PsiClass, field: String, inherited: Boolean): PsiMethod? {
-            return PropertyUtil.findPropertyGetter(psiClass, field, false, inherited)
-        }
+        private fun findGetter(psiClass: PsiClass, field: String, inherited: Boolean): PsiMethod? =
+            PropertyUtil.findPropertyGetter(psiClass, field, false, inherited)
     }
 
     private fun isMatchingFieldType(toField: PsiField, fromGetter: PsiMethod): Boolean {
         val fromType = fromGetter.returnType
         val toType = toField.type
-        if (fromType != null && toType.isAssignableFrom(fromType)) {
-            return true
-        }
-        return false
+        return fromType != null && toType.isAssignableFrom(fromType)
     }
 
     private fun canConvert(toField: PsiField, fromGetter: PsiMethod): Boolean {

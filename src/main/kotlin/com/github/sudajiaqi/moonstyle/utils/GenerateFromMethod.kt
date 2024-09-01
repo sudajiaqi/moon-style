@@ -58,7 +58,7 @@ class GenerateFromMethod(private val mapResult: ClassMapResult) : GenerateMethod
 
     init {
         if (fromName == toName) {
-            this.toName = toName + "1"
+            this.toName += "1"
         }
     }
 }

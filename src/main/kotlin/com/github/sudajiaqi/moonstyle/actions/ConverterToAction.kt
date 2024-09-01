@@ -2,7 +2,10 @@ package com.github.sudajiaqi.moonstyle.actions
 
 import com.github.sudajiaqi.moonstyle.utils.ClassMapResult
 import com.github.sudajiaqi.moonstyle.utils.GenerateToMethod
+import com.github.sudajiaqi.moonstyle.utils.Notifier
 import com.github.sudajiaqi.moonstyle.utils.ProjectUtil
+import com.intellij.notification.NotificationType
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
@@ -12,9 +15,11 @@ import com.intellij.psi.codeStyle.JavaCodeStyleManager
 
 
 /**
- * @author jiaqi
+ * @author jia qi
  */
 class ConverterToAction : AnAction() {
+    override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
+
     override fun actionPerformed(e: AnActionEvent) {
         val psiClass: PsiClass = ProjectUtil.getPsiClassFromContext(e) ?: return
         val generateConverterDialog = ConverterDialog(psiClass, from = false, to = true)
@@ -22,6 +27,7 @@ class ConverterToAction : AnAction() {
         if (generateConverterDialog.isOK) {
             val classTo = generateConverterDialog.convertToClass
             generateConvertAs(classTo, psiClass, generateConverterDialog.isInheritFields())
+            Notifier.notify(psiClass.project, "Method generate successfully! ", NotificationType.INFORMATION)
         }
     }
 
@@ -40,7 +46,7 @@ class ConverterToAction : AnAction() {
         )
     }
 
-    fun getExecute(to: PsiClass?, from: PsiClass, inherited: Boolean): Runnable {
+    private fun getExecute(to: PsiClass?, from: PsiClass, inherited: Boolean): Runnable {
         return Runnable {
             val result = ClassMapResult.from(to!!, from, inherited)
             val action = GenerateToMethod(result)

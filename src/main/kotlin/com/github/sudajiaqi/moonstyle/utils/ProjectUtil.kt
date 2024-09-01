@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiClass
+import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
@@ -13,8 +14,14 @@ import com.intellij.psi.util.PsiTreeUtil
 
 object ProjectUtil {
     fun getProjectIndentation(psiClass: PsiClass): String? {
-        val indentOptions: CommonCodeStyleSettings.IndentOptions =
-            retrieveFromAssociatedDocument(psiClass.containingFile)!!
+        val containingFile = psiClass.containingFile
+        var indentOptions = CommonCodeStyleSettings.IndentOptions.DEFAULT_INDENT_OPTIONS
+
+        val document = PsiDocumentManager.getInstance(psiClass.project).getDocument(containingFile)
+        if (document != null) {
+            indentOptions = retrieveFromAssociatedDocument(document)
+        }
+
         return if (indentOptions.USE_TAB_CHARACTER) {
             "\t\t"
         } else {

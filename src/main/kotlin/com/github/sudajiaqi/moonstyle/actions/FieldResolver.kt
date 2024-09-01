@@ -37,7 +37,6 @@ class FieldResolver(private var comment: Boolean, private var random: Boolean, p
             return kv
         }
         psiClass.allFields.filter { !it.hasModifier(JvmModifier.STATIC) }.forEach {
-
             val type = it.type
             val name = it.name
 

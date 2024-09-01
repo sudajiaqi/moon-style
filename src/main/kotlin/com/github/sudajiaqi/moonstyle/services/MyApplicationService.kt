@@ -1,12 +1,13 @@
 package com.github.sudajiaqi.moonstyle.services
 
-import com.github.sudajiaqi.moonstyle.MyBundle
+import com.github.sudajiaqi.moonstyle.MoonStyle
 import com.github.sudajiaqi.moonstyle.settings.MoonSettingConfig
 import com.github.sudajiaqi.moonstyle.settings.ToJsonConfig
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
+import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.util.xmlb.XmlSerializerUtil
 
 @State(
@@ -15,7 +16,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 )
 class MyApplicationService : PersistentStateComponent<MyApplicationService> {
     init {
-        println(MyBundle.message("applicationService"))
+        thisLogger().info(MoonStyle.message("applicationService"))
     }
 
     var config: MoonSettingConfig = MoonSettingConfig(ToJsonConfig())

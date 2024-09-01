@@ -57,7 +57,7 @@ class GenerateConverterMethod(private val mapResult: ClassMapResult) : GenerateM
 
     init {
         if (fromName == toName) {
-            this.toName = toName + "1"
+            this.toName += "1"
         }
     }
 }

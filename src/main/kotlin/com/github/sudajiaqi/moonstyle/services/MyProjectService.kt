@@ -1,11 +1,14 @@
 package com.github.sudajiaqi.moonstyle.services
 
-import com.github.sudajiaqi.moonstyle.MyBundle
+import com.github.sudajiaqi.moonstyle.MoonStyle
+import com.intellij.openapi.components.Service
+import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
 
+@Service(Service.Level.PROJECT)
 class MyProjectService(project: Project) {
 
     init {
-        println(MyBundle.message("projectService", project.name))
+        thisLogger().info(MoonStyle.message("projectService", project.name))
     }
 }

@@ -1,21 +1,18 @@
 package com.github.sudajiaqi.moonstyle.actions
 
-import com.github.sudajiaqi.moonstyle.utils.ClassMapResult
-import com.github.sudajiaqi.moonstyle.utils.GenerateConverterMethod
-import com.github.sudajiaqi.moonstyle.utils.GenerateMethod
-import com.github.sudajiaqi.moonstyle.utils.ProjectUtil
+import com.github.sudajiaqi.moonstyle.utils.*
+import com.intellij.notification.NotificationType
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
-import com.intellij.psi.JavaPsiFacade
-import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiElementFactory
-import com.intellij.psi.PsiMethod
+import com.intellij.psi.*
 import com.intellij.psi.codeStyle.JavaCodeStyleManager
 import org.jetbrains.annotations.NotNull
 
 class BeanConverter : AnAction() {
+
+    override fun getActionUpdateThread(): ActionUpdateThread = ActionUpdateThread.BGT
     override fun actionPerformed(e: AnActionEvent) {
         val psiClass: PsiClass = ProjectUtil.getPsiClassFromContext(e)!!
         val generateConverterDialog = ConverterDialog(psiClass, from = true, to = true)
@@ -29,6 +26,8 @@ class BeanConverter : AnAction() {
                 generateConverterDialog.isInheritFields(),
                 psiClass
             )
+            Notifier.notify(psiClass.project, "Method generate successfully! ", NotificationType.INFORMATION)
+
         }
     }
 
