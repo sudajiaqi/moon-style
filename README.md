@@ -1,46 +1,66 @@
-# idea-plugin-base
+# moon-style
 
-![Build](https://github.com/sudajiaqi/idea-plugin-base/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties) and [pluginName](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+![Build](https://github.com/sudajiaqi/moon-style/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/15331-moon-stylesvg)](https://plugins.jetbrains.com/plugin/15331-moon-style)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/15331-moon-style.svg)](https://plugins.jetbrains.com/plugin/15331-moon-style)
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+This is a tool set for editor
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+### Usage:
+#### Converter method
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+1. Put the caret in any place within the class, press **Alt+Ins** or **Command + n**.
+2. select **Converter method** in menu or use the shortcut **Ctrl+Alt+G**.
+   3.In the dialog select the Class you want to convert <b>To</b> and select the class you want to convert **From**.
+4. Press **Ok** and converter method will be added to your current class.
+5. Plugin also writes in comments list of fields, that were not mapped (appropriate setter or getter is missing or different types).
+
+
+#### Converter to method
+1. Put the caret in any place within the class, press **Alt+Ins** or **Command + n**.
+2. select **Converter to method** in menu.
+3. In the dialog select the Class you want to convert **To**.
+4. Press **Ok** and converter method will be added to your current class.
+5. Plugin also writes in comments list of fields, that were not mapped (appropriate setter or getter is missing or different types).
+
+
+#### Converter from method
+1. Put the caret in any place within the class, press **Alt+Ins** or **Command + n**
+2. select **Converter from method** in menu.
+3. In the dialog select the Class you want to convert **From**.
+4. Press **Ok** and converter method will be added to your current class.
+5. Plugin also writes in comments list of fields, that were not mapped (appropriate setter or getter is missing or different types).
+
+#### To Json
+1. Open the java class which you want to generate a json object for
+2. Click or Right Click the class ,and select `To Json`
+3. Finally, you can paste the json to anywhere
+
+#### To Yaml
+1. Open the java class which you want to generate a yaml object for
+2. Click or Right Click the class ,and select `To Yaml`
+3. Finally, you can paste the json to anywhere
+
 <!-- Plugin description end -->
 
 ## Installation
 
 - Using the IDE built-in plugin system:
   
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "idea-plugin-base"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "moon-style""</kbd> >
   <kbd>Install</kbd>
   
 - Using JetBrains Marketplace:
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/15331-moon-style) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
 
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
+  You can also download the [latest release](https://plugins.jetbrains.com/plugin/15331-moon-style/versions) from JetBrains Marketplace and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 - Manually:
 
-  Download the [latest release](https://github.com/sudajiaqi/idea-plugin-base/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/sudajiaqi/moon-style/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
@@ -48,4 +68,3 @@ To keep everything working, do not remove `<!-- ... -->` sections.
 Plugin based on the [IntelliJ Platform Plugin Template][template].
 
 [template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
