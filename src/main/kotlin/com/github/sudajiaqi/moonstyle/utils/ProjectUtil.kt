@@ -13,7 +13,7 @@ import com.intellij.psi.codeStyle.CommonCodeStyleSettings.IndentOptions.retrieve
 import com.intellij.psi.util.PsiTreeUtil
 
 object ProjectUtil {
-    fun getProjectIndentation(psiClass: PsiClass): String? {
+    fun getProjectIndentation(psiClass: PsiClass): String {
         val containingFile = psiClass.containingFile
         var indentOptions = CommonCodeStyleSettings.IndentOptions.DEFAULT_INDENT_OPTIONS
 
