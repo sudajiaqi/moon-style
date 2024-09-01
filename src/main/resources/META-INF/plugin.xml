@@ -1,18 +1,67 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.sudajiaqi.ideapluginbase</id>
-    <name>idea-plugin-base</name>
+    <id>com.github.sudajiaqi.moonstyle</id>
+    <name>moon-style</name>
     <vendor>sudajiaqi</vendor>
 
+    <!-- Product and plugin compatibility requirements -->
+    <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.sudajiaqi.ideapluginbase.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow id="Moon-style" factoryClass="com.github.sudajiaqi.moonstyle.toolWindow.MyToolWindowFactory"/>
+        <applicationService
+                serviceImplementation="com.github.sudajiaqi.moonstyle.services.MyApplicationService"/>
+        <projectService
+                serviceImplementation="com.github.sudajiaqi.moonstyle.services.MyProjectService"/>
+        <applicationConfigurable
+                id="moonStyleSetting"
+                bundle="messages.MoonStyle"
+                parentId="tools"
+                instance="com.github.sudajiaqi.moonstyle.settings.AppSettingsConfigurable"
+                displayName="Moon Style"/>
+        <notificationGroup id="Moon-style-Notification-Group" displayType="BALLOON" bundle="messages.MoonStyle"
+                           key="moon.style.notification"/>
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.sudajiaqi.ideapluginbase.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener class="com.github.sudajiaqi.moonstyle.listeners.MyProjectManagerListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+    <actions>
+        <action id="com.github.sudajiaqi.moonstyle.actions.ConverterToAction"
+                class="com.github.sudajiaqi.moonstyle.actions.ConverterToAction"
+                text="Converter to Method"
+                description="Generates method for converting the instance of one class">
+            <add-to-group group-id="JavaGenerateGroup1" anchor="first"/>
+        </action>
+
+        <action id="com.github.sudajiaqi.moonstyle.actions.ConverterFromAction"
+                class="com.github.sudajiaqi.moonstyle.actions.ConverterFromAction"
+                text="Converter from Method"
+                description="Generates method for converting the instance of one class to another">
+            <add-to-group group-id="JavaGenerateGroup1" anchor="first"/>
+        </action>
+
+        <action id="com.github.sudajiaqi.moonstyle.actions.BeanConverter"
+                class="com.github.sudajiaqi.moonstyle.actions.BeanConverter"
+                text="Bean-Converter"
+                description="Transfer a pojo to another">
+            <add-to-group group-id="JavaGenerateGroup1" anchor="first"/>
+        </action>
+
+        <action id="com.github.sudajiaqi.moonstyle.actions.JsonConverter"
+                class="com.github.sudajiaqi.moonstyle.actions.JsonConverter" text="To Json"
+                description="Generate Json for a POJO">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+
+        <action id="com.github.sudajiaqi.moonstyle.actions.YamlConverter"
+                class="com.github.sudajiaqi.moonstyle.actions.YamlConverter" text="To Yaml"
+                description="Generate Yaml for a POJO">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+
+    </actions>
 </idea-plugin>

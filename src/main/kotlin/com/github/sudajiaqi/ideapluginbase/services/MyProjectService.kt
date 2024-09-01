@@ -1,9 +1,9 @@
-package com.github.sudajiaqi.ideapluginbase.services
+package com.github.sudajiaqi.moonstyle.services
 
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
-import com.github.sudajiaqi.ideapluginbase.MyBundle
+import com.github.sudajiaqi.moonstyle.MyBundle
 
 @Service(Service.Level.PROJECT)
 class MyProjectService(project: Project) {

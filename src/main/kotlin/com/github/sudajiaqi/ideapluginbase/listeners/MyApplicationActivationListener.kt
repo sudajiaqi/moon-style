@@ -1,4 +1,4 @@
-package com.github.sudajiaqi.ideapluginbase.listeners
+package com.github.sudajiaqi.moonstyle.listeners
 
 import com.intellij.openapi.application.ApplicationActivationListener
 import com.intellij.openapi.diagnostic.thisLogger
