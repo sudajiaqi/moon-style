@@ -1,6 +1,6 @@
 # moon-style
 
-![Build](https://github.com/GodMoonLight/moon-style/workflows/Build/badge.svg)
+![Build](https://github.com/sudajiaqi/moon-style/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/15331-moon-stylesvg)](https://plugins.jetbrains.com/plugin/15331-moon-style)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/15331-moon-style.svg)](https://plugins.jetbrains.com/plugin/15331-moon-style)
 
@@ -46,15 +46,22 @@ This is a tool set for editor
 
 ## Installation
 
-- Using IDE built-in plugin system:
+- Using the IDE built-in plugin system:
   
-  <kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "moon-style"</kbd> >
-  <kbd>Install Plugin</kbd>
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "moon-style""</kbd> >
+  <kbd>Install</kbd>
   
+- Using JetBrains Marketplace:
+
+  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/15331-moon-style) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+
+  You can also download the [latest release](https://plugins.jetbrains.com/plugin/15331-moon-style/versions) from JetBrains Marketplace and install it manually using
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+
 - Manually:
 
-  Download the [latest release](https://github.com/GodMoonLight/moon-style/releases/latest) and install it manually using
-  <kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+  Download the [latest release](https://github.com/sudajiaqi/moon-style/releases/latest) and install it manually using
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
 ---
