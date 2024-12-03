@@ -3,7 +3,7 @@
 # moon-style Changelog
 
 ## [Unreleased]
-
+- upgrade idea version support
 ## [1.0.0] - 2024-09-01
 
 - upgrade plugin template
@@ -14,7 +14,6 @@
 
 ## [0.1.7] - 2023-06-18
 
-[Unreleased]: upgrade idea version support
 ## [0.1.6] - 2022-12-02
 
 ### Add
