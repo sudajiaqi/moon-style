@@ -3,7 +3,11 @@
 # moon-style Changelog
 
 ## [Unreleased]
+
+## [1.0.3] - 2024-12-03
+
 - upgrade idea version support
+
 ## [1.0.0] - 2024-09-01
 
 - upgrade plugin template
@@ -94,7 +98,8 @@
 - toJson: convert bean to json
 - toYaml: convert bean to yaml
 
-[Unreleased]: https://github.com/sudajiaqi/moon-style/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/sudajiaqi/moon-style/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/sudajiaqi/moon-style/compare/v1.0.0...v1.0.3
 [1.0.0]: https://github.com/sudajiaqi/moon-style/compare/v0.1.8...v1.0.0
 [0.1.8]: https://github.com/sudajiaqi/moon-style/compare/v0.1.7...v0.1.8
 [0.1.7]: https://github.com/sudajiaqi/moon-style/compare/v0.1.6...v0.1.7
